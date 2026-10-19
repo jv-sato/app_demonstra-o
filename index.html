@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#e8281a" />
+    <meta
+      name="description"
+      content="Peça seus favoritos no Sabor da Casa. Cardápio digital com entrega e pedido pelo WhatsApp."
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Seu App</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="App Delivery, início">
+        <span class="brand-icon" aria-hidden="true"> ✦ </span>
+        <span
+          ><strong>Seu <em>App</em></strong
+          ><small>NO NOSSO APP É MAIS BARATO!</small></span
+        >
+      </a>
+      <div class="header-actions">
+        <a class="header-menu-link" href="#cardapio">Nosso cardápio</a>
+        <button id="installAppBtn" class="install-app" type="button">
+          Instalar app
+        </button>
+      </div>
+    </header>
+    <main id="inicio">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow"><i>✦</i> SABOR QUE ABRAÇA</span>
+          <h1 id="hero-title">
+            Seu momento merece<br /><span>algo delicioso.</span>
+          </h1>
+          <p>
+            Receitas caprichadas, ingredientes selecionados e aquele sabor de
+            comida feita com carinho. Escolha seus favoritos e deixe o resto com
+            a gente.
+          </p>
+          <a class="hero-cta" href="#cardapio"
+            >Explorar cardápio <span>↘</span></a
+          >
+          <div class="hero-note">
+            <span class="note-star">★</span
+            ><span
+              ><strong>Preparado com carinho</strong
+              ><small>Do nosso fogão direto para você.</small></span
+            >
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Destaque de comida saborosa">
+          <div class="hero-orbit"></div>
+          <div class="hero-photo">
+            <img
+              src="./img/menu/1.jpg"
+              alt="Hambúrguer artesanal servido com acompanhamentos"
+            />
+          </div>
+          <div class="floating-label">
+            <span>♥</span>
+            <div>
+              <strong>Feito na hora</strong><small>Fresquinho e saboroso</small>
+            </div>
+          </div>
+          <span class="hero-spark spark-one">✳</span
+          ><span class="hero-spark spark-two">✦</span>
+        </div>
+        <div class="hero-word" aria-hidden="true">DELICIOSO</div>
+      </section>
+      <section id="cardapio" class="menu-section" aria-labelledby="menu-title">
+        <div class="section-heading">
+          <span class="script-label">Escolha com carinho</span>
+          <h2 id="menu-title">Nosso <span>cardápio</span></h2>
+          <p>Tem sempre um favorito esperando por você.</p>
+          <div class="heading-line"></div>
+        </div>
+        <nav id="filters" class="filters" aria-label="Filtrar categorias">
+          <button class="active" data-cat="Todos" type="button">
+            Todos os itens
+          </button>
+          <button data-cat="Lanches" type="button">Lanches</button>
+          <button data-cat="Porções" type="button">Porções</button>
+          <button data-cat="Bebidas" type="button">Bebidas</button>
+        </nav>
+        <section
+          id="products"
+          class="products"
+          aria-live="polite"
+          aria-label="Produtos"
+        ></section>
+        <div class="menu-footer">
+          <span class="menu-footer-icon">✦</span>
+          <p>
+            <strong>Feito para matar sua fome.</strong><br />Escolha seus itens
+            e monte seu pedido.
+          </p>
+          <button id="footerCartBtn" type="button" class="footer-cart">
+            Ver meu pedido →
+          </button>
+        </div>
+      </section>
+      <section class="closing-banner">
+        <div>
+          <span class="script-label">Um carinho em cada mordida</span>
+          <h2>A felicidade tem<br /><em>gosto de comida boa.</em></h2>
+        </div>
+        <a href="#cardapio" class="banner-link">Escolher meus favoritos ↗</a>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#inicio"
+        ><span class="brand-icon">✦</span
+        ><span
+          ><strong>Seu <em>App</em></strong
+          ><small>COMIDA BOA, MOMENTOS MELHORES</small></span
+        ></a
+      >
+      <small class="copyright">© <a href="https://jvsato.com" target="_blank" rel="noopener noreferrer">jvsato.com.br</a> · App Delivery</small>
+    </footer>
+
+    <div id="overlay" class="overlay hidden">
+      <section
+        class="drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="drawerTitle"
+      >
+        <div class="drawer-head">
+          <div>
+            <span id="drawerEyebrow" class="script-label">Só falta finalizar</span>
+            <h2 id="drawerTitle">Seu pedido</h2>
+          </div>
+          <button id="closeBtn" class="close" aria-label="Fechar" type="button">
+            ×
+          </button>
+        </div>
+        <div id="cartView">
+          <div id="cartItems"></div>
+          <div class="total">
+            <span>Total do pedido</span><strong id="cartTotal">R$ 0,00</strong>
+          </div>
+          <button id="checkoutBtn" class="primary full" type="button">
+            Continuar para entrega <span>→</span>
+          </button>
+        </div>
+        <form id="accountView" class="hidden">
+          <h3>Seus dados e endereço</h3>
+          <p class="account-intro">
+            Suas informações ficam salvas somente neste dispositivo.
+          </p>
+          <div class="grid">
+            <label class="wide"
+              >Nome completo<input
+                id="profileName"
+                maxlength="80"
+                autocomplete="name"
+                placeholder="Como podemos te chamar?"
+            /></label>
+            <label
+              >Telefone<input
+                id="profilePhone"
+                inputmode="tel"
+                autocomplete="tel"
+                placeholder="(11) 99999-9999"
+            /></label>
+            <label
+              >CEP<input
+                id="profileCep"
+                inputmode="numeric"
+                maxlength="9"
+                autocomplete="postal-code"
+                placeholder="00000-000" /><small
+                id="profileCepStatus"
+                aria-live="polite"
+              ></small
+            /></label>
+            <label class="wide"
+              >Rua<input
+                id="profileStreet"
+                autocomplete="address-line1"
+                placeholder="Nome da rua"
+            /></label>
+            <label
+              >Número<input
+                id="profileNumber"
+                autocomplete="address-line2"
+                placeholder="Nº"
+            /></label>
+            <label
+              >Complemento<input id="profileComplement" placeholder="Apto, bloco..."
+            /></label>
+            <label
+              >Bairro<input id="profileDistrict" placeholder="Seu bairro"
+            /></label>
+            <label
+              >Cidade<input id="profileCity" placeholder="Sua cidade"
+            /></label>
+            <label
+              >UF<input id="profileUf" maxlength="2" placeholder="SP"
+            /></label>
+          </div>
+          <button class="primary full" type="submit">
+            Salvar meus dados <span>✓</span>
+          </button>
+        </form>
+        <form id="checkoutForm" class="hidden">
+          <h3>Seus dados para entrega</h3>
+          <div class="grid">
+            <label class="wide"
+              >Nome completo<input
+                id="name"
+                required
+                maxlength="80"
+                autocomplete="name"
+                placeholder="Como podemos te chamar?"
+            /></label>
+            <label
+              >Telefone<input
+                id="phone"
+                required
+                inputmode="tel"
+                autocomplete="tel"
+                placeholder="(11) 99999-9999"
+            /></label>
+            <label
+              >CEP<input
+                id="cep"
+                required
+                inputmode="numeric"
+                maxlength="9"
+                autocomplete="postal-code"
+                placeholder="00000-000" /><small
+                id="cepStatus"
+                aria-live="polite"
+              ></small
+            ></label>
+            <label class="wide"
+              >Rua<input
+                id="street"
+                required
+                autocomplete="address-line1"
+                placeholder="Nome da rua"
+            /></label>
+            <label
+              >Número<input
+                id="number"
+                required
+                autocomplete="address-line2"
+                placeholder="Nº"
+            /></label>
+            <label
+              >Complemento<input id="complement" placeholder="Apto, bloco..."
+            /></label>
+            <label
+              >Bairro<input id="district" required placeholder="Seu bairro"
+            /></label>
+            <label
+              >Cidade<input id="city" required placeholder="Sua cidade"
+            /></label>
+            <label
+              >UF<input id="uf" required maxlength="2" placeholder="SP"
+            /></label>
+          </div>
+          <h3>Como você prefere pagar?</h3>
+          <fieldset>
+            <legend class="sr">Forma de pagamento</legend>
+            <label class="radio"
+              ><input
+                type="radio"
+                name="payment"
+                value="Cartão de crédito"
+                required
+              />
+              Crédito</label
+            >
+            <label class="radio"
+              ><input type="radio" name="payment" value="Cartão de débito" />
+              Débito</label
+            >
+            <label class="radio"
+              ><input type="radio" name="payment" value="PIX" /> PIX</label
+            >
+            <label class="radio"
+              ><input type="radio" name="payment" value="Dinheiro" />
+              Dinheiro</label
+            >
+          </fieldset>
+          <div id="cashBox" class="cash hidden">
+            <label
+              >Valor que será pago<input
+                id="cashPaid"
+                inputmode="decimal"
+                placeholder="Ex.: 100,00"
+            /></label>
+            <p>Troco estimado: <strong id="change">R$ 0,00</strong></p>
+          </div>
+          <label class="notes-label"
+            >Observações<textarea
+              id="notes"
+              maxlength="300"
+              rows="3"
+              placeholder="Alguma preferência? Ex.: sem cebola..."
+            ></textarea>
+          </label>
+          <div class="summary">
+            <span>Total do pedido</span><strong id="formTotal"></strong>
+          </div>
+          <button class="primary full" type="submit">
+            Gerar resumo do pedido <span>→</span>
+          </button>
+          <button id="backBtn" class="link full" type="button">
+            ← Voltar ao carrinho
+          </button>
+        </form>
+        <div id="success" class="hidden success">
+          <div class="check">✓</div>
+          <span class="script-label">Tudo certo por aqui!</span>
+          <h3>Seu pedido está pronto</h3>
+          <p class="success-intro">
+            Confira os detalhes e envie para o restaurante pelo WhatsApp.
+          </p>
+          <pre id="orderText"></pre>
+          <a
+            id="whatsappBtn"
+            class="whatsapp-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            >◉ Enviar pelo WhatsApp</a
+          ><button id="copyBtn" class="link full" type="button">
+            Copiar resumo</button
+          ><button id="newOrderBtn" class="link full" type="button">
+            Começar novo pedido
+          </button>
+          <p class="notice">
+            Demonstração: não processamos pagamentos nem recebemos pedidos em um
+            servidor.
+          </p>
+        </div>
+      </section>
+    </div>
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <a class="bottom-nav-item" href="#cardapio" id="bottomMenuBtn">
+        <span class="nav-icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </span>
+        <small>Menu</small>
+      </a>
+      <button
+        class="bottom-nav-item"
+        id="favoritesBtn"
+        type="button"
+        aria-pressed="false"
+      >
+        <span class="nav-icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20.8 8.7c0 4.1-8.8 10-8.8 10s-8.8-5.9-8.8-10a4.7 4.7 0 0 1 8.8-2.2 4.7 4.7 0 0 1 8.8 2.2Z" />
+          </svg>
+        </span>
+        <small>Favoritos</small>
+      </button>
+      <button
+        class="bottom-nav-item"
+        id="cartBtn"
+        type="button"
+        aria-label="Abrir pedido"
+      >
+        <span class="nav-icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 8h12l1 12H5L6 8Z" />
+            <path d="M9 9V6a3 3 0 0 1 6 0v3" />
+          </svg>
+        </span>
+        <small>Pedido</small>
+        <b id="cartCount">0</b>
+      </button>
+      <button class="bottom-nav-item" id="accountBtn" type="button">
+        <span class="nav-icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M5 20a7 7 0 0 1 14 0" />
+          </svg>
+        </span>
+        <small>Conta</small>
+      </button>
+    </nav>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
